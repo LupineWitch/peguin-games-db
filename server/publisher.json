@@ -8,5 +8,50 @@
         "id": 2,
         "name": "CD Projekt Red",
         "isIndie": false 
+    }, 
+    {
+        "id": 3,
+        "name": "Valve Corporation",
+        "isIndie": false 
+    }, 
+    {
+        "id": 4,
+        "name": "PUBG Corporation",
+        "isIndie": false 
+    }, 
+    {
+        "id": 5,
+        "name": "Electronic Arts",
+        "isIndie": false 
+    },
+    {
+        "id": 6,
+        "name": "Grinding Gear Games",
+        "isIndie": false 
+    },
+    {
+        "id": 7,
+        "name": "Bethesda Game Studios",
+        "isIndie": false 
+    },
+    {
+        "id": 8,
+        "name": "From Software",
+        "isIndie": false 
+    },
+    {
+        "id": 9,
+        "name": "SEGA",
+        "isIndie": false 
+    },
+    {
+        "id": 10,
+        "name": "Nolla Games",
+        "isIndie": true 
+    },
+    {
+        "id": 11,
+        "name": "Bloober Team",
+        "isIndie": true 
     }
 ]
