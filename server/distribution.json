@@ -1,0 +1,8 @@
+[
+    {
+        "id": 1, 
+        "name": "Linux Mint",
+        "version": "20.1",
+        "kernel-version": "5.8.0-53-generic"
+    }
+]

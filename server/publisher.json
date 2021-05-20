@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "name": "Rockstar Games",
+        "isIndie": false 
+    }, 
+    {
+        "id": 2,
+        "name": "CD Projekt Red",
+        "isIndie": false 
+    }
+]
