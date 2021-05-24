@@ -1,0 +1,27 @@
+<p>games works!</p>
+
+<table>
+    <thead>
+      <tr>
+        <th scope="col" style="width: 12%">Id</th>
+        <th scope="col" style="width: 12%">Name </th>
+        <th scope="col" style="width: 12%">Linux Distribution</th>
+        <th scope="col" style="width: 12%">Publisher</th>
+        <th scope="col" style="width: 12%">Release Date</th>
+        <th scope="col" style="width: 12%">Genre</th>
+        <th scope="col" style="width: 12%">Avg. Rating</th>
+        <th scope="col" style="width: 12%">Disk Space</th>
+          </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let game of gameList">
+        <th>{{ game.id }}</th>
+        <td>
+          {{ game.name }}
+        </td>
+        <td style="text-align: center">{{ game.distributionId }}</td>
+        <td style="text-align: center">
+        </td>
+      </tr>
+    </tbody>
+  </table>
