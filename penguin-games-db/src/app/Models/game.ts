@@ -5,7 +5,7 @@ export class Game {
       private _name: string,
       private _distributionId: number,
       private _publisherId: number,
-      private _releaseYear: Date,
+      private _releaseYear: string,
       private _genre:string[],
       private _averageRating:number,
       private _diskSpace:number
@@ -51,12 +51,12 @@ export class Game {
         return this._publisherId;
     }
 
-    public set releaseYear(year:Date)
+    public set releaseYear(year:string)
     {
         this._releaseYear=year;
     }
 
-    public get releaseYear():Date
+    public get releaseYear():string
     {
         return this._releaseYear;
     }

@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Game } from './Models/game';
+import { Observable } from 'rxjs';
+import { Publisher } from './Models/publisher';
+import { Distribution } from './Models/distribution';
 
 
 @Injectable({
@@ -10,11 +13,20 @@ export class DataServiceService {
 
   constructor(private http: HttpClient) {}
 
-  rootURL = 'http://localhost:7777';
+  rootURL = 'http://localhost:7777/';
 
-  getGames()
+  getGames(): Observable<Game[]>
   {
-    return this.http.get(this.rootURL + '/games');
-  
+    return this.http.get<Game[]>(this.rootURL + 'games/');
+  }
+
+  getPublishers(): Observable<Publisher[]>
+  {
+    return this.http.get<Publisher[]>(this.rootURL + 'publisher/');
+  }
+
+  getDistributions(): Observable<Distribution[]>
+  {
+    return this.http.get<Distribution[]>(this.rootURL + 'distribution/');
   }
 }

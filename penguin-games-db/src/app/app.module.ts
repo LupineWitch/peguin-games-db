@@ -5,7 +5,9 @@ import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { GamesComponent } from './games/games.component';
-
+import {MatTableModule} from '@angular/material/table';
+import {MatSortModule} from '@angular/material/sort';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -17,6 +19,9 @@ import { GamesComponent } from './games/games.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    MatTableModule,
+    MatSortModule,
+    NoopAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent,HttpClientModule]
