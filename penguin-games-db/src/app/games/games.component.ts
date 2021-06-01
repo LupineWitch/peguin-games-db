@@ -15,8 +15,8 @@ import {MatIconModule} from '@angular/material/icon'
 })
 export class GamesComponent implements OnInit {
   displayedColumns: string[] = 
-    ['id', 'name', 'distribution', 'publisher', 
-    'release year', 'genre', 'average rating', 'disk space', 'actions'];
+    ['id', 'name', 'distributionId', 'publisherId', 
+    'releaseYear', 'genre', 'averageRating', 'diskSpace', 'actions'];
     
   gameList?: Game[] = [];
   dataSource: MatTableDataSource<Game>;
@@ -44,27 +44,27 @@ export class GamesComponent implements OnInit {
 
   ngOnInit(): void { }
 
-  sortData(sort: Sort) {
-    const data = this.gameList?.slice();
-    if (!sort.active || sort.direction === '') {
-      this.gameList = data;
-      return;
-    }
+  // sortData(sort: Sort) {
+  //   const data = this.gameList?.slice();
+  //   if (!sort.active || sort.direction === '') {
+  //     this.gameList = data;
+  //     return;
+  //   }
 
-    this.gameList = data?.sort((a, b) => {
-      const isAsc = sort.direction === 'asc';
-      switch (sort.active) {
-        case 'id': return compare(a.id, b.id, isAsc);
-        case 'name': return compare(a.name, b.name, isAsc);
-        case 'release year': return compare(a.releaseYear, b.releaseYear, isAsc);
-        case 'average rating': return compare(a.averageRating, b.averageRating, isAsc);
-        case 'disk space': return compare(a.diskSpace, b.diskSpace, isAsc);
-        default: return 0;
-      }
-    });
-  }
+  //   this.gameList = data?.sort((a, b) => {
+  //     const isAsc = sort.direction === 'asc';
+  //     switch (sort.active) {
+  //       case 'id': return compare(a.id, b.id, isAsc);
+  //       case 'name': return compare(a.name, b.name, isAsc);
+  //       case 'release year': return compare(a.releaseYear, b.releaseYear, isAsc);
+  //       case 'average rating': return compare(a.averageRating, b.averageRating, isAsc);
+  //       case 'disk space': return compare(a.diskSpace, b.diskSpace, isAsc);
+  //       default: return 0;
+  //     }
+  //   });
+  // }
 }
 
-function compare(a: number | string, b: number | string, isAsc: boolean) {
-  return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
-}
+// function compare(a: number | string, b: number | string, isAsc: boolean) {
+//   return (a < b ? -1 : 1) * (isAsc ? 1 : -1);
+// }

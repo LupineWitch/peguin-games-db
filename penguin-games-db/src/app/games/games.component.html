@@ -26,7 +26,7 @@
     </tbody>
   </table> -->
 
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8" (matSortChange)="sortData($event)">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
   
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
@@ -38,38 +38,38 @@
     <td mat-cell *matCellDef="let game"> {{game.name}} </td>
   </ng-container>
   
-  <ng-container matColumnDef="distribution">
+  <ng-container matColumnDef="distributionId">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Distribution</th>
     <td mat-cell *matCellDef="let game"> {{game.distributionId}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="publisher">
+  <ng-container matColumnDef="publisherId">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Publisher</th>
     <td mat-cell *matCellDef="let game"> {{game.publisherId}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="release year">
+  <ng-container matColumnDef="releaseYear">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Release year</th>
     <td mat-cell *matCellDef="let game"> {{game.releaseYear}} </td>
   </ng-container>
 
   <ng-container matColumnDef="genre">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header>Genre</th>
+    <th mat-header-cell *matHeaderCellDef>Genre</th>
     <td mat-cell *matCellDef="let game"> {{game.genre}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="average rating">
+  <ng-container matColumnDef="averageRating">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Average rating</th>
     <td mat-cell *matCellDef="let game"> {{game.averageRating}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="disk space">
+  <ng-container matColumnDef="diskSpace">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Disk space</th>
     <td mat-cell *matCellDef="let game"> {{game.diskSpace}} </td>
   </ng-container>
 
   <ng-container matColumnDef="actions">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header></th>
+    <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let game"> 
       <button mat-icon-button color="primary">
         <mat-icon>edit</mat-icon>
@@ -78,7 +78,6 @@
         <mat-icon>delete</mat-icon>
       </button>
     </td>
-
   </ng-container>
   
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
