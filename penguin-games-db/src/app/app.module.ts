@@ -8,6 +8,8 @@ import { GamesComponent } from './games/games.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     MatTableModule,
     MatSortModule,
     NoopAnimationsModule,
+    MatButtonModule,
+    MatIconModule,
   ],
   providers: [],
   bootstrap: [AppComponent,HttpClientModule]

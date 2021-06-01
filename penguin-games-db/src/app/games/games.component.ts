@@ -5,7 +5,8 @@ import { Game } from '../Models/game';
 import { DataServiceService } from '../data-service.service';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatSort, Sort} from '@angular/material/sort';
-
+import {MatButtonModule} from '@angular/material/button';
+import {MatIconModule} from '@angular/material/icon'
 
 @Component({
   selector: 'app-games',
@@ -15,7 +16,7 @@ import {MatSort, Sort} from '@angular/material/sort';
 export class GamesComponent implements OnInit {
   displayedColumns: string[] = 
     ['id', 'name', 'distribution', 'publisher', 
-    'release year', 'genre', 'average rating', 'disk space'];
+    'release year', 'genre', 'average rating', 'disk space', 'actions'];
     
   gameList?: Game[] = [];
   dataSource: MatTableDataSource<Game>;
