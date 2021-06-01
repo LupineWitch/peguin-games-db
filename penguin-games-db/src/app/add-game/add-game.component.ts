@@ -1,7 +1,8 @@
 import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
+import { Publisher } from '../Models/publisher';
 import {Game} from '../Models/game'
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import { Distribution } from '../Models/distribution';
+import { DataServiceService } from '../data-service.service';
 
 @Component({
   selector: 'app-add-game',
@@ -9,13 +10,26 @@ import { MatFormFieldModule } from '@angular/material/form-field';
   styleUrls: ['./add-game.component.scss']
 })
 export class AddGameComponent implements OnInit {
+  genres: string[] = ['action', 'shooter', 'adventure', 'medival', 'assassin'];
+  publisherList?: Publisher[] = [];
+  distributionList?: Distribution[] = [];
+
   errorMessage: string = "";
   newGame: Game;
   @Input()
   gameList: Game[] = [];
   @Output() addNewGame: EventEmitter<Game> = new EventEmitter()
 
-  constructor() { }
+  constructor(private dataService: DataServiceService) 
+  { 
+    this.dataService.getDistributions().subscribe(distribution => {
+      this.distributionList = distribution;
+    });
+
+    this.dataService.getPublishers().subscribe(publisher => {
+      this.publisherList = publisher;
+    });
+  }
 
   ngOnInit(): void {
   }
