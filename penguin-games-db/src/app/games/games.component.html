@@ -3,7 +3,7 @@
 <mat-form-field>
   <input #searchInput matInput type="text" placeholder="Search" (keyup)="search(searchInput.value)">
 </mat-form-field>
-<button mat-icon-button color="primary" (click)="clear()">
+<button mat-icon-button color="primary" (click)="clear()" #tooltip="matTooltip" matTooltip="Clear search" matTooltipPosition="right">
   <mat-icon>clear</mat-icon>
 </button>
 
