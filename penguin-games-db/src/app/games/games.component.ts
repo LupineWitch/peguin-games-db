@@ -38,16 +38,20 @@ export class GamesComponent implements OnInit {
   }
 
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('searchInput') searchInput: any;
 
   ngOnInit(): void { }
 
   search(value: string)
   {
     this.value = value;
-    console.log("Henlo");
-    // const filterValue = (event.target as HTMLInputElement).value;
     this.dataSource.filter = value.trim().toLowerCase();
   }
 
+  clear()
+  {
+    this.search('');
+    this.searchInput.nativeElement.value = '';
+  }
 }
 
