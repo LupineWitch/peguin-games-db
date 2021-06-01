@@ -19,11 +19,11 @@ export class GamesComponent implements OnInit {
     ['id', 'name', 'distributionId', 'publisherId', 
     'releaseYear', 'genre', 'averageRating', 'diskSpace', 'actions'];
     
-  gameList?: Game[] = [];
+  gameList: Game[] = [];
   dataSource: MatTableDataSource<Game>;
   value: string;
-  // selectedGame: Game;
-  // selected = false;
+  selectedGame: Game;
+  selected = false;
   // newgame: Game;
   // show = false;
 
@@ -48,10 +48,29 @@ export class GamesComponent implements OnInit {
     this.dataSource.filter = value.trim().toLowerCase();
   }
 
+  onSelect(game: Game): void {
+    if (!this.selected) {
+      this.selectedGame = game;
+    }
+  }
+
   clear()
   {
     this.search('');
     this.searchInput.nativeElement.value = '';
   }
+
+
+  delete(which: number): void {
+    let idx = this.gameList.findIndex((x) => x.id == which);
+    this.gameList.splice(idx, 1);
+    this.dataService.deleteGame(which).subscribe((x) => console.log(x));
+  }
+
+  edit(game: Game): void {
+    console.log('edited game:' + game);
+    this.dataService.editGame(game.id, game).subscribe((x) => console.log(x));
+  }
+
 }
 

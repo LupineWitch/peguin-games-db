@@ -29,4 +29,14 @@ export class DataServiceService {
   {
     return this.http.get<Distribution[]>(this.rootURL + 'distribution/');
   }
+
+  deleteGame(id:number)
+  {
+      return this.http.delete(this.rootURL + 'games/' + id);
+
+  }
+
+  editGame(id: number, editedGame: Game){
+    return this.http.put(this.rootURL + '/games/' + id, editedGame);
+  }
 }
