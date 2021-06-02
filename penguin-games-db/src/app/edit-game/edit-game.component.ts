@@ -1,5 +1,8 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core'
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core'
+import { DataServiceService } from '../data-service.service';
+import { Distribution } from '../Models/distribution';
 import {Game} from '../Models/game';
+import { Publisher } from '../Models/publisher';
 
 
 @Component({
@@ -9,14 +12,42 @@ import {Game} from '../Models/game';
 })
 export class EditGameComponent implements OnInit {
   errorMessage: string = "";
+  genres: string[] = ['action', 'shooter', 'adventure', 'medival', 'assassin'];
+  publisherList?: Publisher[] = [];
+  distributionList?: Distribution[] = [];
+
+  @ViewChild('nameInput') nameInput: any;
+  @ViewChild('distributorInput') distributorInput: any;
+  @ViewChild('publisherInput') publisherInput: any;
+  @ViewChild('yearInput') yearInput: any;
+  @ViewChild('genreInput') genreInput: any;
+  @ViewChild('ratingInput') ratingInput: any;
+  @ViewChild('diskInput') diskInput: any;
+
+
   @Input() gamesList: Game[];
   @Input() selected: Game;
+
   @Output() selectGame: EventEmitter<Game> = new EventEmitter();
   @Output() editGame: EventEmitter<Game> = new EventEmitter();
-  constructor() { }
+  
+  constructor(private dataService: DataServiceService) 
+  { 
+    this.dataService.getDistributions().subscribe(distribution => {
+      this.distributionList = distribution;
+    });
+
+    this.dataService.getPublishers().subscribe(publisher => {
+      this.publisherList = publisher;
+    });
+  }
 
   ngOnInit(): void {
-
+    console.log(this.selected);
+    this.nameInput.nativeElement.value = this.selected.name;
+    this.yearInput.nativeElement.value = this.selected.releaseYear;
+    this.ratingInput.nativeElement.value = this.selected.releaseYear;
+    this.diskInput.nativeElement.value - this.selected.diskSpace;
   }
 
   verifyData(formValues: Game): void {
