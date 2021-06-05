@@ -1,63 +1,70 @@
-<p>add-game works!</p>
+<mat-card class="card">
+  <mat-card-header>
+    <div mat-card-avatar>
+      <mat-icon>add</mat-icon>
+    </div>
+    <mat-card-title>Add new game!</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form #gameForm="ngForm" (ngSubmit)="verifyData(gameForm)">
+      <div>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+          <input name = "name" #name="ngModel"  ngModel matInput type="text" required>
+        </mat-form-field>
 
-<form #gameForm="ngForm" (ngSubmit)="verifyData(gameForm)">
-  <div>
-  <mat-form-field>
-    <mat-label>Name</mat-label>
-      <input name = "name" #name="ngModel"  ngModel matInput type="text" required>
-    </mat-form-field>
+        <mat-divider></mat-divider>
 
-    <mat-divider></mat-divider>
-    <mat-form-field>
-      <mat-label>Distribution</mat-label>
-      <mat-select  name="distributionId" #distribution="ngModel" ngModel required>
-        <mat-option  *ngFor="let d of distributionList" [value]="d.id">{{d.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-  
-    <mat-divider></mat-divider>
-    
-    <mat-form-field>
-      <mat-label>Publisher</mat-label>
-      <mat-select name="publisherId" #publisherId="ngModel" ngModel required> 
-        <mat-option *ngFor="let p of publisherList" [value]="p.id">{{p.name}}</mat-option>
-      </mat-select>
-    </mat-form-field>
-    
-    <mat-divider></mat-divider>
-    
-    <mat-form-field>
-      <mat-label>Release year</mat-label>
-      <input name = "releaseYear" #releaseYear="ngModel"  ngModel matInput type="number" value="2021" min="1970" max="2021" required>
-    </mat-form-field>
-    
-    <mat-divider></mat-divider>
-    
-    <mat-form-field>
-      <mat-label>Genre</mat-label>
-      <mat-select name="genre" #genre="ngModel" ngModel multiple required>
-        <mat-option *ngFor="let genre of genres" [value]="genre"> {{genre}} </mat-option>
-      </mat-select>
-    </mat-form-field>
-    
-    <mat-divider></mat-divider>
-    
-    <mat-form-field>
-      <mat-label>Average rating</mat-label>
-      <input matInput   name="averageRating" #averageRating="ngModel" ngModel type="number" value="50" min="0" max="100" required>
-    </mat-form-field>
-    
-    <mat-divider></mat-divider>
-    
-    <mat-form-field>
-      <mat-label>Disk space (in MB)</mat-label>
-      <input  name="diskSpace" #diskSpace="ngModel" ngModel matInput type="number" value="10000" min="0" required>
-    </mat-form-field>
+        <mat-form-field>
+          <mat-label>Distribution</mat-label>
+          <mat-select  name="distributionId" #distribution="ngModel" ngModel required>
+            <mat-option  *ngFor="let d of distributionList" [value]="d.id">{{d.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+      
+        <mat-divider></mat-divider>
+        
+        <mat-form-field>
+          <mat-label>Publisher</mat-label>
+          <mat-select name="publisherId" #publisherId="ngModel" ngModel required> 
+            <mat-option *ngFor="let p of publisherList" [value]="p.id">{{p.name}}</mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <mat-divider></mat-divider>
+        
+        <mat-form-field>
+          <mat-label>Release year</mat-label>
+          <input name = "releaseYear" #releaseYear="ngModel" ngModel matInput type="number" value="2021" min="1970" max="2021" required>
+        </mat-form-field>
+        
+        <mat-divider></mat-divider>
+        
+        <mat-form-field>
+          <mat-label>Genre</mat-label>
+          <mat-select name="genre" #genre="ngModel" ngModel multiple required>
+            <mat-option *ngFor="let genre of genres" [value]="genre"> {{genre}} </mat-option>
+          </mat-select>
+        </mat-form-field>
+        
+        <mat-divider></mat-divider>
+        
+        <mat-form-field>
+          <mat-label>Average rating</mat-label>
+          <input matInput   name="averageRating" #averageRating="ngModel" ngModel type="number" value="50" min="0" max="100" required>
+        </mat-form-field>
+        
+        <mat-divider></mat-divider>
+        
+        <mat-form-field>
+          <mat-label>Disk space (in MB)</mat-label>
+          <input  name="diskSpace" #diskSpace="ngModel" ngModel matInput type="number" value="10000" min="0" required>
+        </mat-form-field>
 
-    <button id="saveButton" type="submit" mat-icon-button color="primary">
-      <mat-icon>add_circle_outline</mat-icon>
-    </button>
-  </div>
-</form>
-
-
+        <button id="saveButton" type="submit" mat-icon-button color="primary">
+          <mat-icon>add_circle_outline</mat-icon>
+        </button>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

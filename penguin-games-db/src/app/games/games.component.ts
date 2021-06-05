@@ -2,9 +2,9 @@ import {  Component,  OnInit, ViewChild,
   ɵCompiler_compileModuleSync__POST_R3__} from '@angular/core';
 import { Game } from '../Models/game';
 import { DataServiceService } from '../data-service.service';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatSort, Sort} from '@angular/material/sort';
-import {MatDialogModule} from '@angular/material/dialog';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+
 
 @Component({
   selector: 'app-games',
@@ -22,7 +22,7 @@ export class GamesComponent implements OnInit {
   selectedGame: Game;
   selected = false;
   newgame: Game;
-  show = false;
+  addFormShow = false;
   prevGameId = 0;
   displayEditForm = false;
   addButtonShow = true;
@@ -60,7 +60,6 @@ export class GamesComponent implements OnInit {
     this.searchInput.nativeElement.value = '';
   }
 
-
   delete(which: number): void {
     let idx = this.gameList.findIndex((x) => x.id == which);
     this.gameList.splice(idx, 1);
@@ -84,12 +83,12 @@ export class GamesComponent implements OnInit {
   }
   showEditForm(): void {
     this.addButtonShow = false;
-    this.show = true;
+    this.addFormShow = true;
   }
   
   hideEditForm(): void {
     this.addButtonShow = true;
-    this.show = false;
+    this.addFormShow = false;
   }
   
   updateFormVisibility(game: Game): void // Edit

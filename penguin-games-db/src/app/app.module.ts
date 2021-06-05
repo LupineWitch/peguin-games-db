@@ -21,6 +21,10 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatDividerModule} from '@angular/material/divider';
 import { PublisherComponent } from './publisher/publisher.component';
 import { FormsModule }   from '@angular/forms';
+// import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatCardModule} from '@angular/material/card';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatMenuModule} from '@angular/material/menu';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -47,6 +51,10 @@ import { FormsModule }   from '@angular/forms';
     MatSelectModule,
     MatDividerModule,
     FormsModule,
+    // MatSnackBar,
+    MatCardModule,
+    MatToolbarModule,
+    MatMenuModule,
   ],
   providers: [],
   bootstrap: [AppComponent,HttpClientModule]
