@@ -79,19 +79,20 @@ export class GamesComponent implements OnInit {
     this.gameList.push(game);
     this.dataService.addGame(game).subscribe((x) => console.log(x));
 
-    this.hideEditForm();
+    this.hideAddForm();
   }
-  showEditForm(): void {
+
+  showAddForm(): void {
     this.addButtonShow = false;
     this.addFormShow = true;
   }
   
-  hideEditForm(): void {
+  hideAddForm(): void {
     this.addButtonShow = true;
     this.addFormShow = false;
   }
   
-  updateFormVisibility(game: Game): void // Edit
+  updateEditVisibility(game: Game): void // Edit
   {
     this.selectedGame != undefined ? this.prevGameId = this.selectedGame.id : -1;
     this.onSelect(game);

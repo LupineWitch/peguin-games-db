@@ -1,1 +1,30 @@
+<mat-toolbar>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+     <mat-icon>menu</mat-icon>
+   </button>
+  <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <a routerLink="">
+          <mat-icon>games</mat-icon>
+          <span>Games</span>
+        </a>
+      </button>
+      <button mat-menu-item>
+        <a routerLink="/publisher">
+          <mat-icon>publish</mat-icon>
+          <span>Publishers</span>
+        </a>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>person_outline</mat-icon>
+        <span>Distributions</span>
+      </button>
+  </mat-menu>
+  
+    <span>Penguin Games DB</span>
+    <span class="spacer"></span>
+  
+   <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/penguin-110-1109469.png" height="30px">
+</mat-toolbar>
+
 <p>publisher works!</p>

@@ -3,11 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { AddGameComponent } from './add-game/add-game.component';
 import { EditGameComponent } from './edit-game/edit-game.component';
 import { GamesComponent } from './games/games.component';
+import { PublisherComponent } from './publisher/publisher.component';
 
 const routes: Routes = [
   { path: 'add-game', component: AddGameComponent }, 
   { path: '', component: GamesComponent },
-  {path: 'edit-game', component: EditGameComponent}
+  { path: 'edit-game', component: EditGameComponent}, 
+  { path: 'publisher', component: PublisherComponent},
 ];
 
 @NgModule({

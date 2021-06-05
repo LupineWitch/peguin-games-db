@@ -3,18 +3,22 @@
    <mat-icon>menu</mat-icon>
  </button>
 <mat-menu #menu="matMenu">
-  <button mat-menu-item>
-    <mat-icon>games</mat-icon>
-    <span>Games</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>publish</mat-icon>
-    <span>Publishers</span>
-  </button>
-  <button mat-menu-item>
-    <mat-icon>person_outline</mat-icon>
-    <span>Distributions</span>
-  </button>
+    <button mat-menu-item>
+      <a routerLink="">
+        <mat-icon>games</mat-icon>
+        <span>Games</span>
+      </a>
+    </button>
+    <button mat-menu-item>
+      <a routerLink="/publisher">
+        <mat-icon>publish</mat-icon>
+        <span>Publishers</span>
+      </a>
+    </button>
+    <button mat-menu-item>
+      <mat-icon>person_outline</mat-icon>
+      <span>Distributions</span>
+    </button>
 </mat-menu>
 
  <span>Penguin Games DB</span>
@@ -23,12 +27,12 @@
  <div class="normal-btn">
    <button
     mat-raised-button color="primary" 
-    (click)="showEditForm()" 
+    (click)="showAddForm()" 
     *ngIf="addButtonShow">Add new game</button>
     
   <button 
     mat-raised-button color="primary" 
-    (click)="hideEditForm()" 
+    (click)="hideAddForm()" 
     *ngIf="!addButtonShow">Cancel</button>
  </div>
 
@@ -102,7 +106,7 @@
       </app-delete-game>
       
       <button mat-icon-button color="primary" 
-      (click)="updateFormVisibility(game)">
+      (click)="updateEditVisibility(game)">
         <mat-icon>edit</mat-icon>
       </button>
     </td>
