@@ -21,6 +21,7 @@ export class PublisherComponent implements OnInit {
   show = false;
 
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild('searchInput') searchInput: any;
 
   constructor(private dataService : DataServiceService) 
   {  
@@ -32,16 +33,27 @@ export class PublisherComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void 
-  {
-}
+  ngOnInit(): void { }
 
-onSelect(publisher: Publisher): void {
-  if (publisher == null) this.show = false;
-  if (!this.selected) {
-    this.selectedPublisher = publisher;
+  onSelect(publisher: Publisher): void 
+  {
+    if (publisher == null) this.show = false;
+    if (!this.selected) {
+      this.selectedPublisher = publisher;
+    }
   }
-}
+
+  search(value: string)
+  {
+    // this.value = value;
+    this.dataSource.filter = value.trim().toLowerCase();
+  }
+
+  clear()
+  {
+    this.search('');
+    this.searchInput.nativeElement.value = '';
+  }
 
 // add(publisher: Publisher): void {
 //   let id;
