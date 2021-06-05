@@ -1,5 +1,9 @@
 <p>games works!</p>
-<app-add-game></app-add-game>
+<app-add-game
+  (click)="hideEditForm()"
+  [gameList]="gameList"
+  (addNewGame)="add($event)">
+</app-add-game>
 <mat-form-field>
   <input #searchInput matInput type="text" placeholder="Search" (keyup)="search(searchInput.value)">
 </mat-form-field>

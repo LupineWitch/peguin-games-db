@@ -24,8 +24,8 @@ export class GamesComponent implements OnInit {
   value: string;
   selectedGame: Game;
   selected = false;
-  // newgame: Game;
-  // show = false;
+  newgame: Game;
+  show = false;
 
   constructor(private dataService: DataServiceService) 
   { 
@@ -71,6 +71,24 @@ export class GamesComponent implements OnInit {
     console.log('edited game:' + game);
     this.dataService.editGame(game.id, game).subscribe((x) => console.log(x));
   }
+
+
+  add(game: Game): void {
+    let id;
+    if (this.gameList.length == 0) id = 1;
+    else id = this.gameList[this.gameList.length - 1].id + 1;
+    game.id = id;
+    this.gameList.push(game);
+    this.dataService.addGame(game).subscribe((x) => console.log(x));
+  }
+  showEditForm(): void {
+    this.show = true;
+  }
+  
+  hideEditForm(): void {
+    this.show = false;
+  }
+  
 
 }
 

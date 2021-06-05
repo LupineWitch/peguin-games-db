@@ -3,6 +3,7 @@ import { Publisher } from '../Models/publisher';
 import {Game} from '../Models/game'
 import { Distribution } from '../Models/distribution';
 import { DataServiceService } from '../data-service.service';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-add-game',
@@ -34,15 +35,20 @@ export class AddGameComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  verifyData(formValues: Game): void {
-    if(this.gameList.find(x => x.name === formValues.name && x.publisherId == formValues.publisherId)){
+  verifyData(formValues: NgForm): void {
+    if(this.gameList.find(x => x.name === formValues.name && x.publisherId == formValues.value.publisherId)){
       this.errorMessage = "Game exists in the database"
       return;
     }
     
     this.errorMessage = "";
-    this.newGame = formValues;
+    this.newGame = formValues.value;
     this.addNewGame.emit(this.newGame);
+    console.log(this.newGame);
+    console.log(formValues);
+    console.log(this.errorMessage);
+
+    console.log("add game event emitted");
   }
 }
 

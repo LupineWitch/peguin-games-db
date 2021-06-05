@@ -19,7 +19,8 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { AddGameComponent } from './add-game/add-game.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDividerModule} from '@angular/material/divider';
-
+import { PublisherComponent } from './publisher/publisher.component';
+import { FormsModule }   from '@angular/forms';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -29,6 +30,7 @@ import {MatDividerModule} from '@angular/material/divider';
     AddGameComponent,
     EditGameComponent,
     DeleteGameComponent,
+    PublisherComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,6 +46,7 @@ import {MatDividerModule} from '@angular/material/divider';
     MatTooltipModule,
     MatSelectModule,
     MatDividerModule,
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent,HttpClientModule]

@@ -15,6 +15,7 @@ app.use(bodyParser.urlencoded({
 
 app.listen(7777, () => console.log("Server address http://localhost:7777"));
 
+//GET methods
 app.get('/games', (_req, res) => {
     fs.readFile('./games.json', 'utf8', (err, productsJson) => {
         if (err) {
@@ -148,6 +149,41 @@ app.delete("/games/:id", (req, res) => {
             );
           }
         });
+      }
+    });
+  });
+
+  //POST methods
+  app.post("/games", (req, res) => {
+    fs.readFile("./games.json", "utf8", (err, dataJson) => {
+      if (err) {
+        console.log("File read failed in POST /games: " + err);
+        res.status(500).send("File read failed");
+        return;
+      }
+      var data = JSON.parse(dataJson);
+      var game = data.find((m) => m.id == req.body.id);
+      if (!game) {
+        data.push(req.body);
+        var newList = JSON.stringify(data);
+        fs.writeFile("./games.json", newList, (err) => {
+          if (err) {
+            console.log("Error writing file in POST /games: " + err);
+            res.status(500).send("Error writing file game.json");
+          } else {
+            res.status(201).send(req.body);
+            console.log(
+              "Successfully wrote file games.json and added new game with id = " +
+                req.body.id
+            );
+          }
+        });
+      } else {
+        console.log("game by id = " + req.body.id + " already exists");
+        res
+          .status(500)
+          .send("game by id = " + req.body.id + " already exists");
+        return;
       }
     });
   });

@@ -36,7 +36,28 @@ export class DataServiceService {
 
   }
 
+  deletePublisher(which: number) {
+    throw new Error('Method not implemented.');
+  }
+
+
   editGame(id: number, editedGame: Game){
     return this.http.put(this.rootURL + '/games/' + id, editedGame);
   }
+
+  editPublisher(id: number, publisher: Publisher) {
+    throw new Error('Method not implemented.');
+  }
+
+
+  addPublisher(publisher: Publisher) {
+    throw new Error('Method not implemented.');
+  }
+  
+  addGame(newGame: Game)
+  {
+    return this.http.post(this.rootURL + 'games/', newGame);
+  }
+
+
 }
