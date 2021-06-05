@@ -33,7 +33,6 @@ export class GamesComponent implements OnInit {
       this.gameList = games;
       this.dataSource = new MatTableDataSource(this.gameList);
       this.dataSource.sort = this.sort;
-      
     });
   }
 

@@ -1,6 +1,9 @@
-import {  Component,  OnInit,  ɵCompiler_compileModuleSync__POST_R3__,} from '@angular/core';
+import {  Component,  OnInit,  ViewChild,  ɵCompiler_compileModuleSync__POST_R3__,} from '@angular/core';
 import {Publisher} from "../Models/publisher"
 import {DataServiceService} from '../data-service.service';
+import { MatTableDataSource } from '@angular/material/table';
+import { MatSort } from '@angular/material/sort';
+
 
 @Component({
   selector: 'app-publisher',
@@ -8,19 +11,29 @@ import {DataServiceService} from '../data-service.service';
   styleUrls: ['./publisher.component.scss']
 })
 export class PublisherComponent implements OnInit {
+  displayedColumns: string[] = ['id', 'name', 'isIndie', 'actions'];
+
+  dataSource: MatTableDataSource<Publisher>;
   publisherList: Publisher[];
   selectedPublisher: Publisher;
   selected = false;
   newPublisher: Publisher;
   show = false;
-  constructor(private dataService : DataServiceService) {  }
 
-  ngOnInit(): void 
-  {
+  @ViewChild(MatSort) sort: MatSort;
+
+  constructor(private dataService : DataServiceService) 
+  {  
     this.dataService.getPublishers().subscribe((publishers: Publisher[]) => {
       this.publisherList = publishers;
       console.log(publishers);
-  });
+      this.dataSource = new MatTableDataSource(this.publisherList);
+      this.dataSource.sort = this.sort;
+    });
+  }
+
+  ngOnInit(): void 
+  {
 }
 
 onSelect(publisher: Publisher): void {
