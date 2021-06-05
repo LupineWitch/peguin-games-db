@@ -19,7 +19,7 @@
     
     <mat-form-field>
       <mat-label>Publisher</mat-label>
-      <mat-select   name="publisherId" #publisherId="ngModel" ngModel required> 
+      <mat-select name="publisherId" #publisherId="ngModel" ngModel required> 
         <mat-option *ngFor="let p of publisherList" [value]="p.id">{{p.name}}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -54,12 +54,8 @@
       <input  name="diskSpace" #diskSpace="ngModel" ngModel matInput type="number" value="10000" min="0" required>
     </mat-form-field>
 
-    <button id="saveButton" type="submit">
-      Dodaj<span
-        id="saveButton"
-        class="glyphicon glyphicon-ok"
-        aria-hidden="true"
-      ></span>
+    <button id="saveButton" type="submit" mat-icon-button color="primary">
+      <mat-icon>add_circle_outline</mat-icon>
     </button>
   </div>
 </form>

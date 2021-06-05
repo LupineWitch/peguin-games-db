@@ -3,14 +3,14 @@
 <div class="form-group">
     <mat-form-field>
       <mat-label>Name</mat-label>
-      <input #nameInput matInput type="text" required>
+      <input matInput type="text" required [value]="selected.name">
     </mat-form-field>
 
     <mat-divider></mat-divider>
 
     <mat-form-field>
-      <mat-label>Distributor</mat-label>
-      <mat-select required #distributorInput>
+      <mat-label>Distribution</mat-label>
+      <mat-select required>
         <mat-option *ngFor="let d of distributionList" [value]="d.id">{{d.name}}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -19,7 +19,7 @@
     
     <mat-form-field>
       <mat-label>Publisher</mat-label>
-      <mat-select required #publisherInput> 
+      <mat-select required> 
         <mat-option *ngFor="let p of publisherList" [value]="p.id">{{p.name}}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -28,14 +28,15 @@
     
     <mat-form-field>
       <mat-label>Release year</mat-label>
-      <input matInput type="number" value="2021" min="1970" max="2021" required #yearInput>
+      <input matInput type="number" value="2021" min="1970" max="2021" required
+      [value]="selected.releaseYear">
     </mat-form-field>
     
     <mat-divider></mat-divider>
     
     <mat-form-field>
       <mat-label>Genre</mat-label>
-      <mat-select multiple required #genreInput>
+      <mat-select multiple required>
         <mat-option *ngFor="let genre of genres" [value]="genre"> {{genre}} </mat-option>
       </mat-select>
     </mat-form-field>
@@ -44,14 +45,15 @@
     
     <mat-form-field>
       <mat-label>Average rating</mat-label>
-      <input matInput type="number" value="50" min="0" max="100" required #ratingInput>
+      <input matInput type="number" value="50" min="0" max="100" required
+      [value]="selected.averageRating">
     </mat-form-field>
     
     <mat-divider></mat-divider>
     
     <mat-form-field>
       <mat-label>Disk space (in MB)</mat-label>
-      <input matInput type="number" value="10000" min="0" required #diskInput>
+      <input matInput type="number" value="10000" min="0" required [value]="selected.diskSpace">
     </mat-form-field> 
 
 </div>

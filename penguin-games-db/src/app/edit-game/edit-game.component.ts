@@ -44,11 +44,10 @@ export class EditGameComponent implements OnInit {
 
   ngOnInit(): void {
     console.log(this.selected);
-    this.nameInput.nativeElement.value = this.selected.name;
-    this.yearInput.nativeElement.value = this.selected.releaseYear;
-    this.ratingInput.nativeElement.value = this.selected.releaseYear;
-    this.diskInput.nativeElement.value - this.selected.diskSpace;
+    // this.selectedD = this.selected.distributionId;
+    // console.log(this.selectedD);
   }
+
 
   verifyData(formValues: Game): void {
     if(this.gamesList.find(x => x.name === formValues.name && x.name == formValues.name)){

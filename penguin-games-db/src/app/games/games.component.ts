@@ -4,10 +4,7 @@ import { Game } from '../Models/game';
 import { DataServiceService } from '../data-service.service';
 import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatSort, Sort} from '@angular/material/sort';
-import {MatButtonModule} from '@angular/material/button';
-import {MatIconModule} from '@angular/material/icon'
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @Component({
   selector: 'app-games',
@@ -26,6 +23,9 @@ export class GamesComponent implements OnInit {
   selected = false;
   newgame: Game;
   show = false;
+  prevGameId = 0;
+  displayEditForm = false;
+  addButtonShow = true;
 
   constructor(private dataService: DataServiceService) 
   { 
@@ -72,7 +72,6 @@ export class GamesComponent implements OnInit {
     this.dataService.editGame(game.id, game).subscribe((x) => console.log(x));
   }
 
-
   add(game: Game): void {
     let id;
     if (this.gameList.length == 0) id = 1;
@@ -80,15 +79,33 @@ export class GamesComponent implements OnInit {
     game.id = id;
     this.gameList.push(game);
     this.dataService.addGame(game).subscribe((x) => console.log(x));
+
+    this.hideEditForm();
   }
   showEditForm(): void {
+    this.addButtonShow = false;
     this.show = true;
   }
   
   hideEditForm(): void {
+    this.addButtonShow = true;
     this.show = false;
   }
   
+  updateFormVisibility(game: Game): void // Edit
+  {
+    this.selectedGame != undefined ? this.prevGameId = this.selectedGame.id : -1;
+    this.onSelect(game);
 
+    if (this.displayEditForm)
+    {
+      if (this.prevGameId == this.selectedGame.id) 
+        this.displayEditForm = false;
+    }
+    else
+    {
+      this.displayEditForm = true;
+    }
+  }
 }
 

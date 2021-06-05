@@ -1,9 +1,14 @@
 <p>games works!</p>
-<app-add-game
-  (click)="hideEditForm()"
+<app-add-game 
+  *ngIf="show"
   [gameList]="gameList"
   (addNewGame)="add($event)">
 </app-add-game>
+
+<button mat-button (click)="showEditForm()" *ngIf="addButtonShow">Add new game</button>
+
+<br/>
+
 <mat-form-field>
   <input #searchInput matInput type="text" placeholder="Search" (keyup)="search(searchInput.value)">
 </mat-form-field>
@@ -57,20 +62,20 @@
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let game"> 
       <app-delete-game
-      (mouseenter)="onSelect(game)"
       (click)="onSelect(game)"
       [selected]="selectedGame"
       (deleteGame)="delete($event)">
       </app-delete-game>
-      <a routerLink="/edit-game">
-        <button mat-icon-button color="primary">
-          <mat-icon>edit</mat-icon>
-        </button>
-      </a>
-      <!-- <app-edit-game></app-edit-game>  -->
+      
+      <button mat-icon-button color="primary" 
+      (click)="updateFormVisibility(game)">
+        <mat-icon>edit</mat-icon>
+      </button>
     </td>
   </ng-container>
   
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
   <tr mat-row  *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
+
+<app-edit-game #editForm *ngIf="displayEditForm" [selected]="selectedGame"></app-edit-game>
