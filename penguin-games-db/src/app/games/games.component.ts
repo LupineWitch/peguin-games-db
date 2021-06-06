@@ -13,7 +13,6 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./games.component.scss']
 })
 export class GamesComponent implements OnInit {
-  @ViewChild('GameTable') GameTable: MatTable<any>;
   displayedColumns: string[] = 
     ['id', 'name', 'distributionId', 'publisherId', 
     'releaseYear', 'genre', 'averageRating', 'diskSpace', 'actions'];
@@ -72,6 +71,8 @@ export class GamesComponent implements OnInit {
   edit(game: Game): void {
     console.log('edited game:' + game);
     this.dataService.editGame(game.id, game).subscribe((x) => console.log(x));
+    this.dataSource._updateChangeSubscription();
+
   }
 
   add(game: Game): void {
@@ -81,6 +82,7 @@ export class GamesComponent implements OnInit {
     game.id = id;
     this.gameList.push(game);
     this.dataService.addGame(game).subscribe((x) => console.log(x));
+    this.dataSource._updateChangeSubscription();
 
     this.hideAddForm();
   }

@@ -99,12 +99,15 @@
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let game"> 
-      <app-delete-game
+      <!-- <app-delete-game
       (mouseenter)="onSelect(game)"
       (click)="onSelect(game)"
       [selected]="selectedGame"
       (deleteGame)="delete($event)">
-      </app-delete-game>
+      </app-delete-game> -->
+      <button  mat-icon-button id="deleteButton" (click)="delete(game.id)" class="glyphicon glyphicon-remove" aria-hidden="true" color="primary">
+        <mat-icon>delete</mat-icon>
+      </button>
       
       <button mat-icon-button color="primary" 
       (click)="updateEditVisibility(game)">
