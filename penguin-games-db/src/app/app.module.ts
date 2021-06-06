@@ -25,6 +25,9 @@ import { FormsModule }   from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatMenuModule} from '@angular/material/menu';
+import { AddPublisherComponent } from './add-publisher/add-publisher.component';
+import { EditPublisherComponent } from './edit-publisher/edit-publisher.component';
+import { DeletePublisherComponent } from './delete-publisher/delete-publisher.component';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -35,6 +38,9 @@ import {MatMenuModule} from '@angular/material/menu';
     EditGameComponent,
     DeleteGameComponent,
     PublisherComponent,
+    AddPublisherComponent,
+    EditPublisherComponent,
+    DeletePublisherComponent,
   ],
   imports: [
     BrowserModule,

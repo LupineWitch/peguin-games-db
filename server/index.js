@@ -91,9 +91,47 @@ app.delete("/games/:id", (req, res) => {
     });
   });
 
+  //Publisher
+  app.delete("/publisher/:id", (req, res) => {
+    fs.readFile("./publisher.json", "utf8", (err, dataJson) => {
+      if (err) {
+        console.log("File read failed in DELETE /publisher: " + err);
+        res.status(500).send("File read failed");
+        return;
+      }
+      var data = JSON.parse(dataJson);
+      console.log(data);
+      var idx = data.findIndex(
+        (m) => m.id == req.params.id
+      );
+
+      if (idx != -1) {
+        data.splice(idx, 1);
+        var newList = JSON.stringify(data);
+        fs.writeFile("./publisher.json", newList, (err) => {
+          if (err) {
+            console.log(
+              "Error writing file in DELETE /publisher/" + req.params.id + ": " + err
+            );
+            res.status(500).send("Error writing file publisher.json");
+          } else {
+            res.status(204).send();
+            console.log("Successfully publisher game with id = " + req.params.id);
+          }
+        });
+      } else {
+        console.log("publisher by id = " + req.params.id + " does not exists");
+        res
+          .status(500)
+          .send("publisher by id = " + req.params.id + " does not exists");
+        return;
+      }
+    });
+  });
+
 
   //Edit methods
-
+  //Game
   app.put("/games/:id", (req, res) => {
     fs.readFile("./games.json", "utf8", (err, dataJson) => {
       if (err) {
@@ -153,6 +191,67 @@ app.delete("/games/:id", (req, res) => {
     });
   });
 
+  //Publisher
+  app.put("/publisher/:id", (req, res) => {
+    fs.readFile("./publisher.json", "utf8", (err, dataJson) => {
+      if (err) {
+        console.log(
+          "File read failed in PUT /publisher/" + req.params.id + ": " + err
+        );
+        res.status(500).send("File read failed");
+        return;
+      }
+      var data = JSON.parse(dataJson);
+      var publisherBody = data.find((g) => g.id == req.body.id);
+  
+      if (publisherBody && publisherBody.id != req.params.id) {
+        console.log("publisher by id = " + publisherBody.id + " already exists");
+        res
+          .status(500)
+          .send("publisher by id = " + publisherBody.id + " already exists");
+        return;
+      }
+      var publisher = data.find((m) => m.id == req.params.id);
+      if (!publisher) {
+        data.push(req.body);
+        var newList = JSON.stringify(data);
+        fs.writeFile("./publisher.json", newList, (err) => {
+          if (err) {
+            console.log(
+              "Error writing file in PUT /publisher/" + req.params.id + ": " + err
+            );
+            res.status(500).send("Error writing file publisher.json");
+          } else {
+            res.status(201).send(req.body);
+            console.log(
+              "Successfully wrote file publisher.json and added new publisher with id = " +
+                req.body.id
+            );
+          }
+        });
+      } else {
+        var idx = data.findIndex((m) => m.id == req.params.id);
+        data[idx] = req.body;
+        var newList = JSON.stringify(data);
+        fs.writeFile("./publisher.json", newList, (err) => {
+          if (err) {
+            console.log(
+              "Error writing file in PUT /publisher/" + req.params.id + ": " + err
+            );
+            res.status(500).send("Error writing file publisher.json");
+          } else {
+            res.status(200).send(req.body);
+            console.log(
+              "Successfully wrote file publisher.json and edit publisher with old id = " +
+                req.params.id
+            );
+          }
+        });
+      }
+    });
+  });
+
+
   //POST methods
   app.post("/games", (req, res) => {
     fs.readFile("./games.json", "utf8", (err, dataJson) => {
@@ -183,6 +282,42 @@ app.delete("/games/:id", (req, res) => {
         res
           .status(500)
           .send("game by id = " + req.body.id + " already exists");
+        return;
+      }
+    });
+  });
+
+  //Publisher 
+  
+  app.post("/publisher", (req, res) => {
+    fs.readFile("./publisher.json", "utf8", (err, dataJson) => {
+      if (err) {
+        console.log("File read failed in POST /publisher: " + err);
+        res.status(500).send("File read failed");
+        return;
+      }
+      var data = JSON.parse(dataJson);
+      var publisher = data.find((m) => m.id == req.body.id);
+      if (!publisher) {
+        data.push(req.body);
+        var newList = JSON.stringify(data);
+        fs.writeFile("./publisher.json", newList, (err) => {
+          if (err) {
+            console.log("Error writing file in POST /publisher: " + err);
+            res.status(500).send("Error writing file publisher.json");
+          } else {
+            res.status(201).send(req.body);
+            console.log(
+              "Successfully wrote file publisher.json and added new game with id = " +
+                req.body.id
+            );
+          }
+        });
+      } else {
+        console.log("publisher by id = " + req.body.id + " already exists");
+        res
+          .status(500)
+          .send("publisher by id = " + req.body.id + " already exists");
         return;
       }
     });

@@ -4,6 +4,7 @@ import { Game } from '../Models/game';
 import { DataServiceService } from '../data-service.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
+ import { MatTable } from '@angular/material/table';
 
 
 @Component({
@@ -12,6 +13,7 @@ import { MatSort } from '@angular/material/sort';
   styleUrls: ['./games.component.scss']
 })
 export class GamesComponent implements OnInit {
+  @ViewChild('GameTable') GameTable: MatTable<any>;
   displayedColumns: string[] = 
     ['id', 'name', 'distributionId', 'publisherId', 
     'releaseYear', 'genre', 'averageRating', 'diskSpace', 'actions'];
@@ -48,6 +50,7 @@ export class GamesComponent implements OnInit {
   }
 
   onSelect(game: Game): void {
+    if (game == null) this.displayEditForm = false;
     if (!this.selected) {
       this.selectedGame = game;
     }
@@ -61,8 +64,9 @@ export class GamesComponent implements OnInit {
 
   delete(which: number): void {
     let idx = this.gameList.findIndex((x) => x.id == which);
-    this.gameList.splice(idx, 1);
+    this.gameList = this.gameList.splice(idx, 1);
     this.dataService.deleteGame(which).subscribe((x) => console.log(x));
+    this.dataSource._updateChangeSubscription();
   }
 
   edit(game: Game): void {

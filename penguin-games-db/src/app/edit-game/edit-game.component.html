@@ -6,18 +6,18 @@
     <mat-card-title>Edit game!</mat-card-title>
   </mat-card-header>
   <mat-card-content>
-
-<div class="form-group">
+<form #gameForm="ngForm" (ngSubmit)="verifyData(gameForm.value)">
+<div>
     <mat-form-field>
       <mat-label>Name</mat-label>
-      <input matInput type="text" required [value]="selected.name">
+      <input name = "name" #name="ngModel" ngModel matInput type="text" required [(ngModel)]="selected.name">
     </mat-form-field>
 
     <mat-divider></mat-divider>
 
     <mat-form-field>
       <mat-label>Distribution</mat-label>
-      <mat-select required>
+      <mat-select  name="distributionId" #distribution="ngModel" ngModel required>
         <mat-option *ngFor="let d of distributionList" [value]="d.id">{{d.name}}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -26,7 +26,7 @@
     
     <mat-form-field>
       <mat-label>Publisher</mat-label>
-      <mat-select required> 
+      <mat-select name="publisherId" #publisherId="ngModel" ngModel required> 
         <mat-option *ngFor="let p of publisherList" [value]="p.id">{{p.name}}</mat-option>
       </mat-select>
     </mat-form-field>
@@ -35,7 +35,7 @@
     
     <mat-form-field>
       <mat-label>Release year</mat-label>
-      <input matInput type="number" value="2021" min="1970" max="2021" required
+      <input  name = "releaseYear" #releaseYear="ngModel" ngModel  matInput type="number" value="2021" min="1970" max="2021" required
       [value]="selected.releaseYear">
     </mat-form-field>
     
@@ -43,7 +43,7 @@
     
     <mat-form-field>
       <mat-label>Genre</mat-label>
-      <mat-select multiple required>
+      <mat-select  name="genre" #genre="ngModel" ngModel multiple required>
         <mat-option *ngFor="let genre of genres" [value]="genre"> {{genre}} </mat-option>
       </mat-select>
     </mat-form-field>
@@ -52,7 +52,7 @@
     
     <mat-form-field>
       <mat-label>Average rating</mat-label>
-      <input matInput type="number" value="50" min="0" max="100" required
+      <input name="averageRating" #averageRating="ngModel" ngModel matInput type="number" value="50" min="0" max="100" required
       [value]="selected.averageRating">
     </mat-form-field>
     
@@ -60,13 +60,14 @@
     
     <mat-form-field>
       <mat-label>Disk space (in MB)</mat-label>
-      <input matInput type="number" value="10000" min="0" required [value]="selected.diskSpace">
+      <input name="diskSpace" #diskSpace="ngModel" ngModel matInput type="number" value="10000" min="0" required [value]="selected.diskSpace">
     </mat-form-field> 
 
-    <button mat-icon-button color="primary" #tooltip="matTooltip" matTooltip="Submit" matTooltipPosition="right">
+    <button type="submit" mat-icon-button color="primary" #tooltip="matTooltip" matTooltip="Submit" matTooltipPosition="right">
       <mat-icon>check_circle_outline</mat-icon>
     </button>
 </div>
+</form>
 
 </mat-card-content>
 </mat-card>

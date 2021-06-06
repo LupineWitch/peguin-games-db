@@ -58,8 +58,11 @@ export class EditGameComponent implements OnInit {
     let idx = this.gamesList.findIndex(x => x.id == this.selected.id);
     formValues.id = this.selected.id;
     this.gamesList[idx] = formValues;
+    console.log(formValues);
     this.selectGame.emit(undefined);
     this.editGame.emit(formValues);
-  }
+    console.log("edit event emitted");
+    console.log("error message");
 
+  }
 }
