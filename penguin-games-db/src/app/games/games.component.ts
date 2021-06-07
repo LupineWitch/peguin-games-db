@@ -15,11 +15,11 @@ import { animate, sequence, style, transition, trigger } from '@angular/animatio
   styleUrls: ['./games.component.scss'],
   animations: [
     trigger('fadeInOut', [
-      transition(':enter', [   // :enter is alias to 'void => *'
+      transition(':enter', [
         style({opacity:0}),
         animate(500, style({opacity:1})) 
       ]),
-      transition(':leave', [   // :leave is alias to '* => void'
+      transition(':leave', [ 
         animate(500, style({opacity:0})) 
       ])
     ]), 
@@ -94,19 +94,22 @@ export class GamesComponent implements OnInit {
     this.searchInput.nativeElement.value = '';
   }
 
-  delete(which: number): void {
+  delete(which: number): void 
+  {
     let idx = this.gameList.findIndex((x) => x.id == which);
     this.gameList = this.gameList.splice(idx, 1);
     this.dataService.deleteGame(which).subscribe((x) => console.log(x));
     this.dataSource._updateChangeSubscription();
   }
 
-  edit(game: Game): void {
+  edit(game: Game): void 
+  {
     console.log('edited game:' + game);
     this.dataService.editGame(game.id, game).subscribe((x) => console.log(x));
   }
 
-  add(game: Game): void {
+  add(game: Game): void 
+  {
     let id;
     if (this.gameList.length == 0) id = 1;
     else id = this.gameList[this.gameList.length - 1].id + 1;
@@ -117,12 +120,14 @@ export class GamesComponent implements OnInit {
     this.hideAddForm();
   }
 
-  showAddForm(): void {
+  showAddForm(): void 
+  {
     this.addButtonShow = false;
     this.addFormShow = true;
   }
   
-  hideAddForm(): void {
+  hideAddForm(): void 
+  {
     this.addButtonShow = true;
     this.addFormShow = false;
   }

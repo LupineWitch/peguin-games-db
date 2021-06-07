@@ -11,11 +11,11 @@ import { Distribution } from '../Models/distribution';
   styleUrls: ['./distributions.component.scss'],
   animations: [
     trigger('fadeInOut', [
-      transition(':enter', [   // :enter is alias to 'void => *'
+      transition(':enter', [
         style({opacity:0}),
         animate(500, style({opacity:1})) 
       ]),
-      transition(':leave', [   // :leave is alias to '* => void'
+      transition(':leave', [ 
         animate(500, style({opacity:0})) 
       ])
     ]), 
@@ -55,8 +55,7 @@ export class DistributionsComponent implements OnInit {
     });
   }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void { }
 
   clear()
   {
@@ -70,17 +69,20 @@ export class DistributionsComponent implements OnInit {
     this.dataSource.filter = value.trim().toLowerCase();
   }
 
-  showAddForm(): void {
+  showAddForm(): void 
+  {
     this.addButtonShow = false;
     this.addFormShow = true;
   }
   
-  hideAddForm(): void {
+  hideAddForm(): void 
+  {
     this.addButtonShow = true;
     this.addFormShow = false;
   }
 
-  onSelect(distribution: Distribution): void {
+  onSelect(distribution: Distribution): void 
+  {
     if (distribution == null) this.displayEditForm = false;
     if (!this.selected) {
       this.selectedDistribution = distribution;

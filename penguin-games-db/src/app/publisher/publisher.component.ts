@@ -11,11 +11,11 @@ import { animate, sequence, style, transition, trigger } from '@angular/animatio
   styleUrls: ['./publisher.component.scss'],
   animations: [
     trigger('fadeInOut', [
-      transition(':enter', [   // :enter is alias to 'void => *'
+      transition(':enter', [  
         style({opacity:0}),
         animate(500, style({opacity:1})) 
       ]),
-      transition(':leave', [   // :leave is alias to '* => void'
+      transition(':leave', [ 
         animate(500, style({opacity:0})) 
       ])
     ]), 
@@ -30,6 +30,7 @@ import { animate, sequence, style, transition, trigger } from '@angular/animatio
     ])
   ]
 })
+
 export class PublisherComponent implements OnInit {
   displayedColumns: string[] = ['id', 'name', 'isIndie', 'actions'];
   value:String;
@@ -79,7 +80,8 @@ export class PublisherComponent implements OnInit {
     this.searchInput.nativeElement.value = '';
   }
 
-  add(publisher: Publisher): void {
+  add(publisher: Publisher): void 
+  {
     let id;
     if (this.publisherList.length == 0) id = 1;
     else id = this.publisherList[this.publisherList.length - 1].id + 1;
@@ -88,23 +90,27 @@ export class PublisherComponent implements OnInit {
     this.dataService.addPublisher(publisher).subscribe((x) => console.log(x));
   }
 
-  delete(which: number): void {
+  delete(which: number): void 
+  {
     let idx = this.publisherList.findIndex((x) => x.id == which);
     this.publisherList.splice(idx, 1);
     this.dataService.deletePublisher(which).subscribe((x) => console.log(x));
   }
 
-  edit(publisher: Publisher): void {
+  edit(publisher: Publisher): void 
+  {
     console.log('edited publisher:' + publisher);
     this.dataService.editPublisher(publisher.id, publisher).subscribe((x) => console.log(x));
   }
 
-  showAddForm(): void {
+  showAddForm(): void 
+  {
     this.addButtonShow = false;
     this.addFormShow = true;
   }
 
-  hideAddForm(): void {
+  hideAddForm(): void 
+  {
     this.addButtonShow = true;
     this.addFormShow = false;
   }
