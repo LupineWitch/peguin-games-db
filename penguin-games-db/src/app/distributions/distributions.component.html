@@ -26,17 +26,74 @@
    <span>Penguin Games DB</span>
    <span class="spacer"></span>
   
-   <!-- <div class="normal-btn">
+   <div class="normal-btn">
      <button
       mat-raised-button color="primary" 
       (click)="showAddForm()" 
-      *ngIf="addButtonShow">Add new game</button>
+      *ngIf="addButtonShow">Add new distribution</button>
       
     <button 
       mat-raised-button color="primary" 
       (click)="hideAddForm()" 
       *ngIf="!addButtonShow">Cancel</button>
-   </div> -->
+   </div>
   
    <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/penguin-110-1109469.png" height="30px">
 </mat-toolbar>
+
+<app-add-distribution 
+*ngIf="addFormShow">
+
+</app-add-distribution>
+
+<mat-form-field>
+    <input #searchInput matInput type="text" placeholder="Search" (keyup)="search(searchInput.value)">
+</mat-form-field>
+    <button mat-icon-button color="primary" (click)="clear()" #tooltip="matTooltip" matTooltip="Clear search" matTooltipPosition="right">
+    <mat-icon>clear</mat-icon>
+</button>
+
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
+      <td mat-cell *matCellDef="let distribution"> {{distribution.id}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+      <td mat-cell *matCellDef="let distribution"> {{distribution.name}} </td>
+    </ng-container>
+    
+    <ng-container matColumnDef="version">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Version</th>
+      <td mat-cell *matCellDef="let distribution"> {{distribution.version}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="kernelVersion">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Kernel version</th>
+        <td mat-cell *matCellDef="let distribution"> {{distribution.kernelVersion}} </td>
+      </ng-container>
+  
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let distribution"> 
+        <button mat-icon-button color="primary">
+            <mat-icon>delete</mat-icon>
+          </button>
+        <button mat-icon-button color="primary"
+        (click)="updateEditVisibility(distribution)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <app-edit-distribution
+    #editForm
+    *ngIf="displayEditForm">
+
+  </app-edit-distribution>
