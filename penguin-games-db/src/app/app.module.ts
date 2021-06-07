@@ -28,6 +28,11 @@ import {MatMenuModule} from '@angular/material/menu';
 import { AddPublisherComponent } from './add-publisher/add-publisher.component';
 import { EditPublisherComponent } from './edit-publisher/edit-publisher.component';
 import { DeletePublisherComponent } from './delete-publisher/delete-publisher.component';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+import { DistributionsComponent } from './distributions/distributions.component';
+import { AddDistributionComponent } from './add-distribution/add-distribution.component';
+import { EditDistributionComponent } from './edit-distribution/edit-distribution.component';
+import { DeleteDistributionComponent } from './delete-distribution/delete-distribution.component';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -41,6 +46,10 @@ import { DeletePublisherComponent } from './delete-publisher/delete-publisher.co
     AddPublisherComponent,
     EditPublisherComponent,
     DeletePublisherComponent,
+    DistributionsComponent,
+    AddDistributionComponent,
+    EditDistributionComponent,
+    DeleteDistributionComponent,
   ],
   imports: [
     BrowserModule,
@@ -61,6 +70,7 @@ import { DeletePublisherComponent } from './delete-publisher/delete-publisher.co
     MatCardModule,
     MatToolbarModule,
     MatMenuModule,
+    MatCheckboxModule,
   ],
   providers: [],
   bootstrap: [AppComponent,HttpClientModule]

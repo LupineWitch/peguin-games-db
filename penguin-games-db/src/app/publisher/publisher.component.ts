@@ -19,6 +19,10 @@ export class PublisherComponent implements OnInit {
   selected = false;
   newPublisher: Publisher;
   show = false;
+  addButtonShow = true;
+  addFormShow = false;
+  prevPublisherId = 0;
+  displayEditForm = false;
 
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild('searchInput') searchInput: any;
@@ -75,13 +79,29 @@ export class PublisherComponent implements OnInit {
     this.dataService.editPublisher(publisher.id, publisher).subscribe((x) => console.log(x));
   }
 
+  showAddForm(): void {
+    this.addButtonShow = false;
+    this.addFormShow = true;
+  }
 
-showEditForm(): void {
-  this.show = true;
-}
+  hideAddForm(): void {
+    this.addButtonShow = true;
+    this.addFormShow = false;
+  }
 
-hideEditForm(): void {
-  this.show = false;
-}
+  updateEditVisibility(publisher: Publisher): void
+  {
+    this.selectedPublisher != undefined ? this.prevPublisherId = this.selectedPublisher.id : -1;
+    this.onSelect(publisher);
 
+    if (this.displayEditForm)
+    {
+      if (this.prevPublisherId == this.selectedPublisher.id) 
+        this.displayEditForm = false;
+    }
+    else
+    {
+      this.displayEditForm = true;
+    }
+  }
 }

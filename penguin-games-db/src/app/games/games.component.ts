@@ -5,6 +5,8 @@ import { DataServiceService } from '../data-service.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
  import { MatTable } from '@angular/material/table';
+import { Publisher } from '../Models/publisher';
+import { Distribution } from '../Models/distribution';
 
 
 @Component({
@@ -19,6 +21,8 @@ export class GamesComponent implements OnInit {
     'releaseYear', 'genre', 'averageRating', 'diskSpace', 'actions'];
     
   gameList: Game[] = [];
+  publisherList: Publisher[];
+  distributionList: Distribution[];
   dataSource: MatTableDataSource<Game>;
   value: string;
   selectedGame: Game;
@@ -35,6 +39,14 @@ export class GamesComponent implements OnInit {
       this.gameList = games;
       this.dataSource = new MatTableDataSource(this.gameList);
       this.dataSource.sort = this.sort;
+    });
+
+    this.dataService.getDistributions().subscribe(distributions => {
+      this.distributionList = distributions;
+    });
+
+    this.dataService.getPublishers().subscribe(publishers => {
+      this.publisherList = publishers;
     });
   }
 

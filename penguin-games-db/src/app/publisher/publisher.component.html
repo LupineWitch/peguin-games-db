@@ -16,8 +16,10 @@
         </a>
       </button>
       <button mat-menu-item>
-        <mat-icon>person_outline</mat-icon>
-        <span>Distributions</span>
+        <a routerLink="/distribution">
+            <mat-icon>person_outline</mat-icon>
+            <span>Distributions</span>
+        </a>
       </button>
   </mat-menu>
   
@@ -25,17 +27,21 @@
     <span class="spacer"></span>
 
     <div class="normal-btn">
-        <!-- <button mat-raised-button color="primary">Add new publisher</button>
-        <button mat-raised-button color="primary">Cancel</button> -->
+        <button mat-raised-button color="primary"
+        (click)="showAddForm()"
+        *ngIf="addButtonShow">Add new publisher</button>
+        <button mat-raised-button color="primary"
+        (click)="hideAddForm()"
+        *ngIf="!addButtonShow">Cancel</button>
     </div>
   
    <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/penguin-110-1109469.png" height="30px">
 </mat-toolbar>
 
 <app-add-publisher
+  *ngIf="addFormShow"
   [publisherList]="publisherList"
   (addNewPublisher)="add($event)">
-
 </app-add-publisher>
 
 <mat-form-field>
@@ -73,7 +79,8 @@
         [selected]="selectedPublisher"
         (deletePublisher)="delete($event)">
         </app-delete-publisher>
-        <button mat-icon-button color="primary">
+        <button mat-icon-button color="primary"
+        (click)="updateEditVisibility(publisher)">
           <mat-icon>edit</mat-icon>
         </button>
       </td>
@@ -82,3 +89,8 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row  *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+
+<app-edit-publisher
+  #editForm
+  *ngIf="displayEditForm">
+</app-edit-publisher>

@@ -3,7 +3,6 @@ import { Publisher } from '../Models/publisher';
 import { Distribution } from '../Models/distribution';
 import { DataServiceService } from '../data-service.service';
 import { NgForm } from '@angular/forms';
-import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-add-publisher',
