@@ -41,10 +41,11 @@
    <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/penguin-110-1109469.png" height="30px">
 </mat-toolbar>
 
-<app-add-distribution 
-*ngIf="addFormShow">
-
-</app-add-distribution>
+<div *ngIf="addFormShow" [@fadeInOut]>
+    <app-add-distribution>
+    
+    </app-add-distribution>
+</div>
 
 <mat-form-field>
     <input #searchInput matInput type="text" placeholder="Search" (keyup)="search(searchInput.value)">
@@ -88,12 +89,13 @@
       </td>
     </ng-container>
     
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-header-row [@rowsAnimation] *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row [@rowsAnimation] *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <app-edit-distribution
-    #editForm
-    *ngIf="displayEditForm">
-
-  </app-edit-distribution>
+  <div *ngIf="displayEditForm" [@fadeInOut]>
+      <app-edit-distribution
+      #editForm>
+  
+      </app-edit-distribution>
+  </div>

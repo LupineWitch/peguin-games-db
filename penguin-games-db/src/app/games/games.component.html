@@ -41,11 +41,12 @@
  <img src="https://cdn.iconscout.com/icon/premium/png-256-thumb/penguin-110-1109469.png" height="30px">
 </mat-toolbar>
 
-<app-add-game 
-  *ngIf="addFormShow"
-  [gameList]="gameList"
-  (addNewGame)="add($event)">
-</app-add-game>
+<div *ngIf="addFormShow" [@fadeInOut]>
+  <app-add-game 
+    [gameList]="gameList"
+    (addNewGame)="add($event)">
+  </app-add-game>
+</div>
 
 <br/>
 
@@ -56,7 +57,7 @@
   <mat-icon>clear</mat-icon>
 </button>
 
-<table mat-table [dataSource]="dataSource" #GameTable matSort class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" #GameTable matSort class="mat-elevation-z8" [@rowsAnimation]>
   
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Id</th>
@@ -115,15 +116,16 @@
     </td>
   </ng-container>
   
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row  *matRowDef="let row; columns: displayedColumns;"></tr>
+  <tr mat-header-row [@rowsAnimation] *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row [@rowsAnimation] *matRowDef="let row; columns: displayedColumns;"></tr>
 </table>
 
-<app-edit-game
- #editForm 
- *ngIf="displayEditForm"
- [gamesList]="gameList"
- (selectGame)="onSelect($event)"
- (editGame)="edit($event)"
-  [selected]="selectedGame">
-</app-edit-game>
+<div *ngIf="displayEditForm" [@fadeInOut]>
+  <app-edit-game
+   #editForm 
+   [gamesList]="gameList"
+   (selectGame)="onSelect($event)"
+   (editGame)="edit($event)"
+    [selected]="selectedGame">
+  </app-edit-game>
+</div>

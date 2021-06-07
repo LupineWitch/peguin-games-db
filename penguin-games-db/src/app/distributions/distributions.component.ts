@@ -1,3 +1,4 @@
+import { animate, sequence, style, transition, trigger } from '@angular/animations';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
@@ -7,7 +8,27 @@ import { Distribution } from '../Models/distribution';
 @Component({
   selector: 'app-distributions',
   templateUrl: './distributions.component.html',
-  styleUrls: ['./distributions.component.scss']
+  styleUrls: ['./distributions.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [   // :enter is alias to 'void => *'
+        style({opacity:0}),
+        animate(500, style({opacity:1})) 
+      ]),
+      transition(':leave', [   // :leave is alias to '* => void'
+        animate(500, style({opacity:0})) 
+      ])
+    ]), 
+    trigger('rowsAnimation', [
+      transition('void => *', [
+        style({ height: '*', opacity: '0', transform: 'translateX(-550px)', 'box-shadow': 'none' }),
+        sequence([
+          animate(".25s ease", style({ height: '*', opacity: '.2', transform: 'translateX(0)', 'box-shadow': 'none'  })),
+          animate(".25s ease", style({ height: '*', opacity: 1, transform: 'translateX(0)' }))
+        ])
+      ])
+    ])
+  ]
 })
 export class DistributionsComponent implements OnInit {
 

@@ -33,6 +33,7 @@ import { DistributionsComponent } from './distributions/distributions.component'
 import { AddDistributionComponent } from './add-distribution/add-distribution.component';
 import { EditDistributionComponent } from './edit-distribution/edit-distribution.component';
 import { DeleteDistributionComponent } from './delete-distribution/delete-distribution.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
@@ -71,6 +72,7 @@ import { DeleteDistributionComponent } from './delete-distribution/delete-distri
     MatToolbarModule,
     MatMenuModule,
     MatCheckboxModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
   bootstrap: [AppComponent,HttpClientModule]
