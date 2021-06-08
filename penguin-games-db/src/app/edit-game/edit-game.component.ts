@@ -63,6 +63,5 @@ export class EditGameComponent implements OnInit {
     this.editGame.emit(formValues);
     console.log("edit event emitted");
     console.log("error message");
-
   }
 }

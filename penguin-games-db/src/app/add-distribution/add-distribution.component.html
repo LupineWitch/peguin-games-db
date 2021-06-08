@@ -1,0 +1,37 @@
+<mat-card class="card">
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon>add</mat-icon>
+      </div>
+      <mat-card-title>Add new distribution!</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <form #gameForm="ngForm">
+        <div>
+        <mat-form-field>
+          <mat-label>Name</mat-label>
+            <input name = "name" #name="ngModel"  ngModel matInput type="text" required>
+          </mat-form-field>
+  
+          <mat-divider></mat-divider>
+  
+          <mat-form-field>
+            <mat-label>Version</mat-label>
+              <input name = "version" #name="ngModel"  ngModel matInput type="text" required>
+            </mat-form-field>
+        
+          <mat-divider></mat-divider>
+          
+          <mat-form-field>
+            <mat-label>Kernel version</mat-label>
+              <input name = "kernelVersion" #name="ngModel"  ngModel matInput type="text" required>
+            </mat-form-field>
+  
+          <button id="saveButton" type="submit" mat-icon-button color="primary">
+            <mat-icon>add_circle_outline</mat-icon>
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+</mat-card>
+  

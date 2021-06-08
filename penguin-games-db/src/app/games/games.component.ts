@@ -5,12 +5,34 @@ import { DataServiceService } from '../data-service.service';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatSort } from '@angular/material/sort';
  import { MatTable } from '@angular/material/table';
-
+import { Publisher } from '../Models/publisher';
+import { Distribution } from '../Models/distribution';
+import { animate, sequence, style, transition, trigger } from '@angular/animations';
 
 @Component({
   selector: 'app-games',
   templateUrl: './games.component.html',
-  styleUrls: ['./games.component.scss']
+  styleUrls: ['./games.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      transition(':enter', [
+        style({opacity:0}),
+        animate(500, style({opacity:1})) 
+      ]),
+      transition(':leave', [ 
+        animate(500, style({opacity:0})) 
+      ])
+    ]), 
+    trigger('rowsAnimation', [
+      transition('void => *', [
+        style({ height: '*', opacity: '0', transform: 'translateX(-550px)', 'box-shadow': 'none' }),
+        sequence([
+          animate(".25s ease", style({ height: '*', opacity: '.2', transform: 'translateX(0)', 'box-shadow': 'none'  })),
+          animate(".25s ease", style({ height: '*', opacity: 1, transform: 'translateX(0)' }))
+        ])
+      ])
+    ])
+  ]
 })
 export class GamesComponent implements OnInit {
   displayedColumns: string[] = 
@@ -18,6 +40,8 @@ export class GamesComponent implements OnInit {
     'releaseYear', 'genre', 'averageRating', 'diskSpace', 'actions'];
     
   gameList: Game[] = [];
+  publisherList: Publisher[];
+  distributionList: Distribution[];
   dataSource: MatTableDataSource<Game>;
   value: string;
   selectedGame: Game;
@@ -34,6 +58,14 @@ export class GamesComponent implements OnInit {
       this.gameList = games;
       this.dataSource = new MatTableDataSource(this.gameList);
       this.dataSource.sort = this.sort;
+    });
+
+    this.dataService.getDistributions().subscribe(distributions => {
+      this.distributionList = distributions;
+    });
+
+    this.dataService.getPublishers().subscribe(publishers => {
+      this.publisherList = publishers;
     });
   }
 
@@ -61,21 +93,24 @@ export class GamesComponent implements OnInit {
     this.searchInput.nativeElement.value = '';
   }
 
-  delete(which: number): void {
+  delete(which: number): void 
+  {
     let idx = this.gameList.findIndex((x) => x.id == which);
     this.gameList = this.gameList.splice(idx, 1);
     this.dataService.deleteGame(which).subscribe((x) => console.log(x));
     this.dataSource._updateChangeSubscription();
   }
 
-  edit(game: Game): void {
+  edit(game: Game): void 
+  {
     console.log('edited game:' + game);
     this.dataService.editGame(game.id, game).subscribe((x) => console.log(x));
     this.dataSource._updateChangeSubscription();
 
   }
 
-  add(game: Game): void {
+  add(game: Game): void 
+  {
     let id;
     if (this.gameList.length == 0) id = 1;
     else id = this.gameList[this.gameList.length - 1].id + 1;
@@ -87,12 +122,14 @@ export class GamesComponent implements OnInit {
     this.hideAddForm();
   }
 
-  showAddForm(): void {
+  showAddForm(): void 
+  {
     this.addButtonShow = false;
     this.addFormShow = true;
   }
   
-  hideAddForm(): void {
+  hideAddForm(): void 
+  {
     this.addButtonShow = true;
     this.addFormShow = false;
   }

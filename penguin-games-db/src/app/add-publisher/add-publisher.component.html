@@ -3,28 +3,28 @@
       <div mat-card-avatar>
         <mat-icon>add</mat-icon>
       </div>
-      <mat-card-title>Add Publisher!</mat-card-title>
+      <mat-card-title>Add publisher!</mat-card-title>
     </mat-card-header>
     <mat-card-content>
       <form #publisherForm="ngForm" (ngSubmit)="verifyData(publisherForm)">
         <div>
-        <mat-form-field>
-          <mat-label>Name</mat-label>
+          <mat-form-field>
+            <mat-label>Name</mat-label>
             <input name = "name" #name="ngModel"  ngModel matInput type="text" required>
           </mat-form-field>  
-          <mat-divider></mat-divider>
-         
-            <mat-label>Indie</mat-label>
-            <input name= "isIndie" #isIndie="ngModel" ngModel  type="checkbox" >
-         
-        <mat-divider></mat-divider>
-  
+
+          <!-- <mat-divider></mat-divider> -->
+          <!-- <br/> -->
           
-  
+          <mat-label class="checkbox">Indie</mat-label>
+          <mat-checkbox class="checkbox" name= "isIndie" #isIndie="ngModel" ngModel></mat-checkbox>
+          
+          <mat-divider></mat-divider>  
+
           <button id="saveButton" type="submit" mat-icon-button color="primary">
             <mat-icon>add_circle_outline</mat-icon>
           </button>
         </div>
       </form>
     </mat-card-content>
-  </mat-card>
+</mat-card>
