@@ -42,8 +42,9 @@
 </mat-toolbar>
 
 <div *ngIf="addFormShow" [@fadeInOut]>
-    <app-add-distribution>
-    
+    <app-add-distribution
+      [distributionList]="distributionList"
+      (addNewDistribution)="add($event)">
     </app-add-distribution>
 </div>
 
@@ -79,9 +80,9 @@
     <ng-container matColumnDef="actions">
       <th mat-header-cell *matHeaderCellDef></th>
       <td mat-cell *matCellDef="let distribution"> 
-        <button mat-icon-button color="primary">
-            <mat-icon>delete</mat-icon>
-          </button>
+        <button  mat-icon-button id="deleteButton" (click)="delete(distribution.id)" class="glyphicon glyphicon-remove" aria-hidden="true" color="primary">
+          <mat-icon>delete</mat-icon>
+        </button>
         <button mat-icon-button color="primary"
         (click)="updateEditVisibility(distribution)">
           <mat-icon>edit</mat-icon>
@@ -95,7 +96,13 @@
 
   <div *ngIf="displayEditForm" [@fadeInOut]>
       <app-edit-distribution
-      #editForm>
+      #editForm
+      [distributionList]="distributionList"
+      (selectDistribution)="onSelect($event)"
+      (editDistribution)="edit($event)"
+       [selected]="selectedDistribution">
+      >
+
   
       </app-edit-distribution>
   </div>

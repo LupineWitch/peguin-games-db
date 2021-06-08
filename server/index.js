@@ -129,6 +129,44 @@ app.delete("/games/:id", (req, res) => {
     });
   });
 
+  //Distribution
+  app.delete("/distribution/:id", (req, res) => {
+    fs.readFile("./distribution.json", "utf8", (err, dataJson) => {
+      if (err) {
+        console.log("File read failed in DELETE /distribution: " + err);
+        res.status(500).send("File read failed");
+        return;
+      }
+      var data = JSON.parse(dataJson);
+      console.log(data);
+      var idx = data.findIndex(
+        (m) => m.id == req.params.id
+      );
+
+      if (idx != -1) {
+        data.splice(idx, 1);
+        var newList = JSON.stringify(data);
+        fs.writeFile("./distribution.json", newList, (err) => {
+          if (err) {
+            console.log(
+              "Error writing file in DELETE /distribution/" + req.params.id + ": " + err
+            );
+            res.status(500).send("Error writing file distribution.json");
+          } else {
+            res.status(204).send();
+            console.log("Successfully distribution game with id = " + req.params.id);
+          }
+        });
+      } else {
+        console.log("distribution by id = " + req.params.id + " does not exists");
+        res
+          .status(500)
+          .send("distribution by id = " + req.params.id + " does not exists");
+        return;
+      }
+    });
+  });
+
 
   //Edit methods
   //Game
@@ -183,6 +221,66 @@ app.delete("/games/:id", (req, res) => {
             res.status(200).send(req.body);
             console.log(
               "Successfully wrote file games.json and edit game with old id = " +
+                req.params.id
+            );
+          }
+        });
+      }
+    });
+  });
+
+//Distribution
+  app.put("/distribution/:id", (req, res) => {
+    fs.readFile("./distribution.json", "utf8", (err, dataJson) => {
+      if (err) {
+        console.log(
+          "File read failed in PUT /distribution/" + req.params.id + ": " + err
+        );
+        res.status(500).send("File read failed");
+        return;
+      }
+      var data = JSON.parse(dataJson);
+      var distribution = data.find((g) => g.id == req.body.id);
+  
+      if (distribution && distribution.id != req.params.id) {
+        console.log("distribution by id = " + distribution.id + " already exists");
+        res
+          .status(500)
+          .send("distribution by id = " + distribution.id + " already exists");
+        return;
+      }
+      var distributions = data.find((m) => m.id == req.params.id);
+      if (!distributions) {
+        data.push(req.body);
+        var newList = JSON.stringify(data);
+        fs.writeFile("./distribution.json", newList, (err) => {
+          if (err) {
+            console.log(
+              "Error writing file in PUT /distribution/" + req.params.id + ": " + err
+            );
+            res.status(500).send("Error writing file distribution.json");
+          } else {
+            res.status(201).send(req.body);
+            console.log(
+              "Successfully wrote file distribution.json and added new game with id = " +
+                req.body.id
+            );
+          }
+        });
+      } else {
+        var idx = data.findIndex((m) => m.id == req.params.id);
+        data[idx] = req.body;
+        var newList = JSON.stringify(data);
+        fs.writeFile("./distribution.json", newList, (err) => {
+          if (err) {
+            console.log(
+              "Error writing file in PUT /distribution/" + req.params.id + ": " + err
+            );
+            res.status(500).send("Error writing file distribution.json");
+          } else {
+            res.status(200).send(req.body);
+            console.log(
+              "Successfully wrote file distribution.json and edit distribution with old id = " +
                 req.params.id
             );
           }
@@ -322,3 +420,39 @@ app.delete("/games/:id", (req, res) => {
       }
     });
   });
+
+  //Distribution
+  app.post("/distribution", (req, res) => {
+    fs.readFile("./distribution.json", "utf8", (err, dataJson) => {
+      if (err) {
+        console.log("File read failed in POST /distribution: " + err);
+        res.status(500).send("File read failed");
+        return;
+      }
+      var data = JSON.parse(dataJson);
+      var distribution = data.find((m) => m.id == req.body.id);
+      if (!distribution) {
+        data.push(req.body);
+        var newList = JSON.stringify(data);
+        fs.writeFile("./distribution.json", newList, (err) => {
+          if (err) {
+            console.log("Error writing file in POST /distribution: " + err);
+            res.status(500).send("Error writing file distribution.json");
+          } else {
+            res.status(201).send(req.body);
+            console.log(
+              "Successfully wrote file distribution.json and added new game with id = " +
+                req.body.id
+            );
+          }
+        });
+      } else {
+        console.log("distribution by id = " + req.body.id + " already exists");
+        res
+          .status(500)
+          .send("distribution by id = " + req.body.id + " already exists");
+        return;
+      }
+    });
+  });
+

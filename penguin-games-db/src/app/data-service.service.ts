@@ -30,6 +30,12 @@ export class DataServiceService {
     return this.http.get<Distribution[]>(this.rootURL + 'distribution/');
   }
 
+  deleteDistribution(id:number)
+  {
+      return this.http.delete(this.rootURL + 'distribution/' + id);
+
+  }
+
   deleteGame(id:number)
   {
       return this.http.delete(this.rootURL + 'games/' + id);
@@ -49,6 +55,11 @@ export class DataServiceService {
     return this.http.put(this.rootURL + 'publisher/' + id, publisher);
   }
 
+  
+  editDistribution(id: number, distribution: Distribution) {
+    return this.http.put(this.rootURL + 'distribution/' + id, distribution);
+  }
+
 
   addPublisher(publisher: Publisher) {
     return this.http.post(this.rootURL + 'publisher/', publisher);
@@ -57,6 +68,11 @@ export class DataServiceService {
   addGame(newGame: Game)
   {
     return this.http.post(this.rootURL + 'games/', newGame);
+  }
+
+  addDistribution(newDistribution: Distribution)
+  {
+    return this.http.post(this.rootURL + 'distribution/', newDistribution);
   }
 
 

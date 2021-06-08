@@ -6,7 +6,7 @@
       <mat-card-title>Edit publisher!</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form #publisherForm="ngForm">
+      <form #publisherForm="ngForm" (ngSubmit)="verifyData(publisherForm.value)" >
         <div>
           <mat-form-field>
             <mat-label>Name</mat-label>

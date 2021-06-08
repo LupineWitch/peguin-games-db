@@ -88,6 +88,7 @@ export class PublisherComponent implements OnInit {
     publisher.id = id;
     this.publisherList.push(publisher);
     this.dataService.addPublisher(publisher).subscribe((x) => console.log(x));
+    this.dataSource._updateChangeSubscription();
   }
 
   delete(which: number): void 
@@ -95,12 +96,14 @@ export class PublisherComponent implements OnInit {
     let idx = this.publisherList.findIndex((x) => x.id == which);
     this.publisherList.splice(idx, 1);
     this.dataService.deletePublisher(which).subscribe((x) => console.log(x));
+    this.dataSource._updateChangeSubscription();
   }
 
   edit(publisher: Publisher): void 
   {
     console.log('edited publisher:' + publisher);
     this.dataService.editPublisher(publisher.id, publisher).subscribe((x) => console.log(x));
+    this.dataSource._updateChangeSubscription();
   }
 
   showAddForm(): void 

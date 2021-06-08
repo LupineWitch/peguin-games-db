@@ -57,6 +57,36 @@ export class DistributionsComponent implements OnInit {
 
   ngOnInit(): void { }
 
+  add(distribution: Distribution): void 
+  {
+    console.log("in add");
+    let id;
+    if (this.distributionList.length == 0) id = 1;
+    else id = this.distributionList[this.distributionList.length - 1].id + 1;
+    distribution.id = id;
+    this.distributionList.push(distribution);
+    this.dataService.addDistribution(distribution).subscribe((x) => console.log(x));
+    this.dataSource._updateChangeSubscription();
+
+    this.hideAddForm();
+  }
+
+  delete(which: number): void 
+  {
+    let idx = this.distributionList.findIndex((x) => x.id == which);
+    this.distributionList = this.distributionList.splice(idx, 1);
+    this.dataService.deleteDistribution(which).subscribe((x) => console.log(x));
+    this.dataSource._updateChangeSubscription();
+  }
+
+
+  edit(distribution: Distribution): void 
+  {
+    console.log('edited distribution:' + distribution);
+    this.dataService.editDistribution(distribution.id, distribution).subscribe((x) => console.log(x));
+    this.dataSource._updateChangeSubscription();
+  }
+
   clear()
   {
     this.search('');
@@ -104,4 +134,7 @@ export class DistributionsComponent implements OnInit {
       this.displayEditForm = true;
     }
   }
+
+
+  
 }

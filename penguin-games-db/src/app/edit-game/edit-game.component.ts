@@ -16,15 +16,6 @@ export class EditGameComponent implements OnInit {
   publisherList?: Publisher[] = [];
   distributionList?: Distribution[] = [];
 
-  @ViewChild('nameInput') nameInput: any;
-  @ViewChild('distributorInput') distributorInput: any;
-  @ViewChild('publisherInput') publisherInput: any;
-  @ViewChild('yearInput') yearInput: any;
-  @ViewChild('genreInput') genreInput: any;
-  @ViewChild('ratingInput') ratingInput: any;
-  @ViewChild('diskInput') diskInput: any;
-
-
   @Input() gamesList: Game[];
   @Input() selected: Game;
 

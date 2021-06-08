@@ -7,16 +7,34 @@ import { Publisher } from '../Models/publisher';
   styleUrls: ['./edit-publisher.component.scss']
 })
 export class EditPublisherComponent implements OnInit {
-
+  errorMessage: string;
+  
   @Input() publisherList: Publisher[];
   @Input() selected: Publisher;
 
-  @Output() selectPublishere: EventEmitter<Publisher> = new EventEmitter();
+  @Output() selectPublisher: EventEmitter<Publisher> = new EventEmitter();
   @Output() editPublisher: EventEmitter<Publisher> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
+
+    
+  }
+
+  verifyData(formValues: Publisher): void {
+    if(this.publisherList.find(x => x.name === formValues.name && x.name == formValues.name)){
+      this.errorMessage = "Wydawca już istnieje w bazie, proszę wprowadzić inne dane!"
+      return;
+    }
+    this.errorMessage = "";
+    let idx = this.publisherList.findIndex(x => x.id == this.selected.id);
+    formValues.id = this.selected.id;
+    this.publisherList[idx] = formValues;
+    console.log(formValues);
+    this.selectPublisher.emit(undefined);
+    this.editPublisher.emit(formValues);
+
   }
 
 }

@@ -6,7 +6,7 @@
       <mat-card-title>Add new distribution!</mat-card-title>
     </mat-card-header>
     <mat-card-content>
-      <form #gameForm="ngForm">
+      <form #addDistribution="ngForm"  (ngSubmit)="verifyData(addDistribution)">
         <div>
         <mat-form-field>
           <mat-label>Name</mat-label>

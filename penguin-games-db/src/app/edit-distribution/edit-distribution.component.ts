@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, ViewChild } from '@angular/core'
+import { Distribution } from '../Models/distribution';
 
 @Component({
   selector: 'app-edit-distribution',
@@ -6,10 +7,35 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./edit-distribution.component.scss']
 })
 export class EditDistributionComponent implements OnInit {
+  errorMessage:String;
+
+  @Input() distributionList: Distribution[];
+  @Input() selected: Distribution;
+
+  @Output() selectDistribution: EventEmitter<Distribution> = new EventEmitter();
+  @Output() editDistribution: EventEmitter<Distribution> = new EventEmitter();
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+
+
+  verifyData(formValues: Distribution): void {
+    if(this.distributionList.find(x => x.name === formValues.name && x.name == formValues.name)){
+      this.errorMessage = "Gra już istnieje w bazie, proszę wprowadzić inne dane!"
+      return;
+    }
+    this.errorMessage = "";
+    let idx = this.distributionList.findIndex(x => x.id == this.selected.id);
+    formValues.id = this.selected.id;
+    this.distributionList[idx] = formValues;
+    console.log(formValues);
+    this.selectDistribution.emit(undefined);
+    this.editDistribution.emit(formValues);
+    console.log("edit event emitted");
+    console.log("error message");
   }
 
 }
