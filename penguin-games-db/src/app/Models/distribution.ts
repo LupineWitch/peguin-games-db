@@ -22,6 +22,11 @@ export class Distribution {
         this._version = version;
     }
 
+    public set kernelVersion(kernelVersion: string)
+    {
+        this._kernelVersion = kernelVersion;
+    }
+
     public get id():number
     {
         return this._id;
