@@ -104,6 +104,7 @@ export class PublisherComponent implements OnInit {
     console.log('edited publisher:' + publisher);
     this.dataService.editPublisher(publisher.id, publisher).subscribe((x) => console.log(x));
     this.dataSource._updateChangeSubscription();
+    this.displayEditForm = false;
   }
 
   showAddForm(): void 

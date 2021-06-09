@@ -23,16 +23,12 @@ export class EditPublisherComponent implements OnInit {
   }
 
   verifyData(formValues: Publisher): void {
-    if(this.publisherList.find(x => x.name === formValues.name && x.name == formValues.name)){
-      this.errorMessage = "Wydawca już istnieje w bazie, proszę wprowadzić inne dane!"
-      return;
-    }
     this.errorMessage = "";
     let idx = this.publisherList.findIndex(x => x.id == this.selected.id);
     formValues.id = this.selected.id;
     this.publisherList[idx] = formValues;
     console.log(formValues);
-    this.selectPublisher.emit(undefined);
+    //this.selectPublisher.emit(undefined);
     this.editPublisher.emit(formValues);
 
   }

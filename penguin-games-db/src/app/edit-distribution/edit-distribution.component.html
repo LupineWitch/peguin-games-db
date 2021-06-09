@@ -10,21 +10,21 @@
         <div>
         <mat-form-field>
           <mat-label>Name</mat-label>
-            <input name = "name" #name="ngModel"  ngModel matInput type="text" required>
+            <input name = "name" #name="ngModel" [ngModel]="selected.name" ngModel matInput type="text" required>
           </mat-form-field>
   
           <mat-divider></mat-divider>
   
           <mat-form-field>
             <mat-label>Version</mat-label>
-              <input name = "version" #name="ngModel"  ngModel matInput type="text" required>
+              <input name = "version" #name="ngModel"  [ngModel]="selected.version" ngModel matInput type="text" required>
             </mat-form-field>
         
           <mat-divider></mat-divider>
           
           <mat-form-field>
             <mat-label>Kernel version</mat-label>
-              <input name = "kernelVersion" #name="ngModel"  ngModel matInput type="text" required>
+              <input name = "kernelVersion" #name="ngModel" [ngModel]="selected.kernelVersion" ngModel matInput type="text" required>
             </mat-form-field>
   
           <button id="saveButton" type="submit" mat-icon-button color="primary">

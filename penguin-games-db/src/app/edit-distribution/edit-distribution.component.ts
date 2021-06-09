@@ -21,10 +21,6 @@ export class EditDistributionComponent implements OnInit {
   }
 
   verifyData(formValues: Distribution): void {
-    if(this.distributionList.find(x => x.name === formValues.name && x.name == formValues.name)){
-      this.errorMessage = "Gra już istnieje w bazie, proszę wprowadzić inne dane!"
-      return;
-    }
     this.errorMessage = "";
     let idx = this.distributionList.findIndex(x => x.id == this.selected.id);
     formValues.id = this.selected.id;
