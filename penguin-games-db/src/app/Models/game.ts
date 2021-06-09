@@ -1,3 +1,7 @@
+import { Observable } from "rxjs";
+import { DataServiceService } from "../data-service.service";
+import { Publisher } from "./publisher";
+
 export class Game {
 
     constructor(
@@ -9,7 +13,7 @@ export class Game {
       private _genre:string[],
       private _averageRating:number,
       private _diskSpace:number
-    ) {}
+    ) { }
 
     public set id(id:number)
     {

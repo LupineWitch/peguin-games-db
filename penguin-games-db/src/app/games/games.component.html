@@ -71,12 +71,12 @@
   
   <ng-container matColumnDef="distributionId">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Distribution</th>
-    <td mat-cell *matCellDef="let game"> {{game.distributionId}} </td>
+    <td mat-cell *matCellDef="let game"> {{getDistributionName(game.distributionId)}} </td>
   </ng-container>
 
   <ng-container matColumnDef="publisherId">
     <th mat-header-cell *matHeaderCellDef mat-sort-header>Publisher</th>
-    <td mat-cell *matCellDef="let game"> {{game.publisherId}} </td>
+    <td mat-cell *matCellDef="let game"> {{getPublisherName(game.publisherId)}} </td>
   </ng-container>
 
   <ng-container matColumnDef="releaseYear">

@@ -58,6 +58,7 @@ export class GamesComponent implements OnInit {
       this.gameList = games;
       this.dataSource = new MatTableDataSource(this.gameList);
       this.dataSource.sort = this.sort;
+      console.log(this.gameList);
     });
 
     this.dataService.getDistributions().subscribe(distributions => {
@@ -73,6 +74,24 @@ export class GamesComponent implements OnInit {
   @ViewChild('searchInput') searchInput: any;
 
   ngOnInit(): void { }
+
+  getPublisherName(id: number)
+  {
+    if (this.publisherList != undefined)
+    {
+      return this.publisherList.find(p => p.id == id)?.name;
+    }
+    return "";
+  }
+
+  getDistributionName(id: number)
+  {
+    if (this.distributionList != undefined)
+    {
+      return this.distributionList.find(d => d.id == id)?.name;
+    }
+    return "";
+  }  
 
   search(value: string)
   {
